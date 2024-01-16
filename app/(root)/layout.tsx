@@ -1,5 +1,5 @@
-import Footer from "@/components/shared/Footer";
-import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/-footer";
+import Header from "@/components/shared/-header";
 
 // layout 을 하나 더 두는 이유는, footer, header 를 페이지 별로 추가/삭제 가능하기에
 export default function RootLayout({
