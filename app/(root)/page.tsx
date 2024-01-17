@@ -13,7 +13,7 @@ export default function Home() {
             </h1>
             <p className="p-regular-20 md:p-regular-24">
               Enjoyed creating this project? Dive deeper into our PRO courses
-              for a richer learning adventure. They're packed with detailed
+              for a richer learning adventure. They re packed with detailed
               explanations, cool features, and exercises to boost your skills.
               Give it a go!
             </p>

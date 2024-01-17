@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 import React from "react";
 
 export interface ICategory extends Document {
