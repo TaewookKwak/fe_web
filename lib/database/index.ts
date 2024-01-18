@@ -23,7 +23,7 @@ export const connectToDatabase = async () => {
     cached.promise ||
     mongoose
       .connect(MONGODB_URI, {
-        // dbName: SITE_NAME,
+        dbName: "Evently",
         bufferCommands: false,
       })
       .then((mongoose) => {
