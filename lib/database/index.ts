@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-let cached = (global as any).mongoose || { conn: null, promise: null };
+let cached = global.mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
   console.log("====================================");
@@ -11,7 +11,7 @@ export const connectToDatabase = async () => {
   console.log("====================================");
   if (cached.conn) {
     return cached.conn;
-  } // 만약 cached.conn이 존재한다면, 반환
+  }
 
   if (!MONGODB_URI) {
     throw new Error(
@@ -21,11 +21,18 @@ export const connectToDatabase = async () => {
 
   cached.promise =
     cached.promise ||
-    mongoose.connect(MONGODB_URI, {
-      dbName: SITE_NAME,
-      bufferCommands: false,
-    }); // cached.promise에 mongoose.connect를 대입
+    mongoose
+      .connect(MONGODB_URI, {
+        // dbName: SITE_NAME,
+        bufferCommands: false,
+      })
+      .then((mongoose) => {
+        console.log("====================================");
+        console.log(mongoose);
+        console.log("====================================");
+        return mongoose;
+      });
 
-  cached.conn = await cached.promise; // cached.conn에 cached.promise를 대입
+  cached.conn = await cached.promise;
   return cached.conn;
 };
