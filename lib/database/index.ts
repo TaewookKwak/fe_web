@@ -6,6 +6,9 @@ const MONGODB_URI = process.env.MONGODB_URI;
 let cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
+  console.log("====================================");
+  console.log(cached);
+  console.log("====================================");
   if (cached.conn) {
     return cached.conn;
   } // 만약 cached.conn이 존재한다면, 반환
@@ -16,10 +19,12 @@ export const connectToDatabase = async () => {
     );
   }
 
-  cached.promise = mongoose.connect(MONGODB_URI, {
-    dbName: SITE_NAME,
-    bufferCommands: false,
-  }); // cached.promise에 mongoose.connect를 대입
+  cached.promise =
+    cached.promise ||
+    mongoose.connect(MONGODB_URI, {
+      dbName: SITE_NAME,
+      bufferCommands: false,
+    }); // cached.promise에 mongoose.connect를 대입
 
   cached.conn = await cached.promise; // cached.conn에 cached.promise를 대입
   return cached.conn;
