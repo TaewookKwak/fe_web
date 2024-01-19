@@ -7,6 +7,7 @@ export default authMiddleware({
     "/api/webhook/clerk",
     "/api/webhook/stripe",
     "/api/uploadthing",
+    "/api/test",
   ], // optional - you can ignore routes that need authentication
   ignoredRoutes: [
     "/api/webhook/clerk",

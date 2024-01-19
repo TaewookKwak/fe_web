@@ -5,8 +5,8 @@ export const ButtonWithHandler = () => {
     const response = await fetch("/api/test", {
       method: "POST",
       body: JSON.stringify({
-        title: "123",
-        content: "345",
+        title: "333",
+        content: "444",
       }),
     });
     const data = await response.json();

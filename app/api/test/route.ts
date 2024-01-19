@@ -11,16 +11,18 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    connectToDatabase();
-    const tests = Test;
+    await connectToDatabase();
 
     const body = await req.json();
 
     const { title, content } = body;
-    const test = new tests({ title, content });
-    await test.save();
+
+    const newUser = await Test.create({ title, content });
+    // const test = new tests({ title, content });
+    // await test.save();
     return NextResponse.json({
       message: "Test created successfully",
+      data: newUser,
     });
   } catch (error) {
     console.log(error);
