@@ -6,6 +6,7 @@ import { connectToDatabase } from "../database";
 import User from "../database/models/user.model";
 import Order from "../database/models/order.model";
 import Event from "../database/models/event.model";
+import { NextResponse } from "next/server";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
