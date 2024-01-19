@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    return new Response("Webhook secret key is missing");
+    return new Response("Webhook secret key is missing", { status: 404 });
   }
 
   // Get the headers
