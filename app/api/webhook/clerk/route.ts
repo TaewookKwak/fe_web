@@ -56,13 +56,13 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, first_name, last_name, image_url, username } =
+    const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
 
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
-      username: username!, // username is optional
+      username: username!,
       firstName: first_name,
       lastName: last_name,
       photo: image_url,
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
 
     const newUser = await createUser(user);
 
-    if (!newUser) {
+    if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
@@ -82,12 +82,12 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.updated") {
-    const { id, first_name, last_name, image_url, username } = evt.data;
+    const { id, image_url, first_name, last_name, username } = evt.data;
 
     const user = {
-      username: username!, // username is optional
       firstName: first_name,
       lastName: last_name,
+      username: username!,
       photo: image_url,
     };
 
@@ -103,9 +103,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: "OK", user: deletedUser });
   }
-
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
 
   return new Response("", { status: 200 });
 }
