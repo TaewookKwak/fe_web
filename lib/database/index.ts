@@ -6,9 +6,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 let cached = global.mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
-  console.log("====================================");
-  console.log(cached);
-  console.log("====================================");
   if (cached.conn) {
     return cached.conn;
   }
@@ -21,17 +18,10 @@ export const connectToDatabase = async () => {
 
   cached.promise =
     cached.promise ||
-    mongoose
-      .connect(MONGODB_URI, {
-        dbName: "Evently",
-        bufferCommands: false,
-      })
-      .then((mongoose) => {
-        console.log("====================================");
-        console.log(mongoose);
-        console.log("====================================");
-        return mongoose;
-      });
+    mongoose.connect(MONGODB_URI, {
+      dbName: "evently",
+      bufferCommands: false,
+    });
 
   cached.conn = await cached.promise;
   return cached.conn;
