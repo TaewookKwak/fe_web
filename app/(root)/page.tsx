@@ -1,7 +1,8 @@
+import { ButtonWithClerk } from "@/components/shared/fetchclerk";
+import { ButtonWithHandler } from "@/components/shared/fetchdata";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-
 export default function Home() {
   return (
     <>
@@ -20,6 +21,8 @@ export default function Home() {
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="#events">Explore Now</Link>
             </Button>
+            <ButtonWithHandler />
+            <ButtonWithClerk />
           </div>
 
           <Image
