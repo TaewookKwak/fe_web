@@ -12,7 +12,7 @@ const Header = () => {
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
           <Image
-            src="assets/images/logo.svg"
+            src="/assets/images/logo.svg"
             width={128}
             height={33}
             alt="Logo"
